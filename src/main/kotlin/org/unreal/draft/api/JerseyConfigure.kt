@@ -8,6 +8,9 @@ import org.glassfish.jersey.server.ResourceConfig
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct
+import java.util.HashSet
+
+
 
 
 @Component
@@ -21,7 +24,6 @@ class JerseyConfigure : ResourceConfig() {
     fun init() {
         this.configureSwagger()
     }
-
 
     private fun configureSwagger() {
         // Available at localhost:port/api/swagger.json
@@ -40,6 +42,11 @@ class JerseyConfigure : ResourceConfig() {
 
     }
 
+    val consumes: HashSet<String> = object : HashSet<String>() {
+        init {
+            add("application/x-www-form-urlencoded")
+        }
+    }
     init {
         this.register(ApiListingResource::class.java)
         this.register(SwaggerSerializers::class.java)

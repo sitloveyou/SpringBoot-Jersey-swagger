@@ -6,5 +6,6 @@ import org.unreal.draft.model.UserModel
 
 @Repository
 interface UserDao : JpaRepository<UserModel , Long>{
-
+    fun findByUserName(userName:String):UserModel
+    override fun findAll():List<UserModel>
 }
