@@ -9,6 +9,6 @@ import javax.transaction.Transactional
 interface CsdnDao : JpaRepository<CsdnModel,Long> {
     @Modifying(clearAutomatically = true)
     @Transactional
-    @Query(value = "SELECT * from csdn_data where degree = '1'", nativeQuery = true)
-    fun getDegree(): List<CsdnModel>
+    @Query(value = "SELECT * from csdn_data where degree = ? ", nativeQuery = true)
+    fun getDegree(page:String): List<CsdnModel>
 }

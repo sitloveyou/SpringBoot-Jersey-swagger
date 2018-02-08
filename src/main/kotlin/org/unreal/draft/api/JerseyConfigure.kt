@@ -6,11 +6,15 @@ import io.swagger.jaxrs.listing.SwaggerSerializers
 import org.glassfish.jersey.jackson.JacksonFeature
 import org.glassfish.jersey.server.ResourceConfig
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider
+import org.springframework.core.type.filter.AnnotationTypeFilter
 import org.springframework.stereotype.Component
+import org.springframework.util.ClassUtils
+import java.nio.file.Path
+import java.security.Provider
 import javax.annotation.PostConstruct
 import java.util.HashSet
-
-
+import java.util.stream.Collectors
 
 
 @Component
@@ -42,16 +46,13 @@ class JerseyConfigure : ResourceConfig() {
 
     }
 
-    val consumes: HashSet<String> = object : HashSet<String>() {
-        init {
-            add("application/x-www-form-urlencoded")
-        }
-    }
+
     init {
         this.register(ApiListingResource::class.java)
         this.register(SwaggerSerializers::class.java)
         this.register(JacksonFeature::class.java)
         packages("org.unreal.draft.api.resource")
     }
+
 
 }

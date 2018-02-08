@@ -48,4 +48,6 @@ dependencies {
 	compile('io.swagger:swagger-jersey2-jaxrs:+')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+
 }
